@@ -44,7 +44,7 @@ must be used such as multiprocessing and MPI bindings into Python.
 
 ## Helpful Libraries
 -    NumPy
--    SciPya
+-    SciPy
 -    Pandas
 -    Matplotlib
 -    Numba
