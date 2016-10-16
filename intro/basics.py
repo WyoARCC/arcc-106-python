@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Introduction to Python for Scientific Computing
@@ -10,7 +11,6 @@ To be used with the Spyder Python
 """
 
 #%% How use libraries (more on this later)
-import os
 import sys
 
 #%% Basic Printing to "STDOUT"
@@ -121,6 +121,37 @@ while (i < 10):
     print(i)
     i+=1
 
-
+i = 0
+a_new_list = []
+while (i < 10):
+    a_new_list.append(i)
+    print(a_new_list)
+    i += 1
     
+while (a_new_list):
+    a_new_list.pop()
+    print(a_new_list)
+
+i = 0
+while (i < 10):
+    a_new_list.insert(0,i)
+    print(a_new_list)
+    i += 1
+    
+# Dictionaries and Loops
+for key in a_dictionary.keys():
+    print(key,a_dictionary[key])
+
+for key,value in a_dictionary.items():
+    print(key,value)
+
+# Sort dictionary by keys.
+for key,value in sorted(a_dictionary.items()):
+    print(key,value)
+    
+# Sort based on the value, not the key
+# Here, we use a lambda function. These are probably more known
+# as anonymous functions. We will see functions next.
+for key,value in sorted(a_dictionary.items(),key=lambda value: value[1]):
+    print(key,value)
     
