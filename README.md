@@ -55,7 +55,7 @@ must be used such as multiprocessing and MPI bindings into Python.
 ## Additional Resources
 -    Anaconda Python: https://www.continuum.io/
 -    SciPy Lectures: http://www.scipy-lectures.org/index.html
--    Software Carpentry: http://www.scipy-lectures.org/index.html
+-    Software Carpentry: http://swcarpentry.github.io/python-novice-inflammation/reference/
 -    There are many O'Reilly books available.
 -    Python Primer: https://hplgit.github.io/primer.html/doc/pub/half/book.pdf
 -    Python for Computational Science and Engineering: http://www.southampton.ac.uk/~fangohr/training/python/pdfs/Python-for-Computational-Science-and-Engineering.pdf
