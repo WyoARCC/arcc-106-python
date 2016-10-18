@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ## A function to generate an d-dimensional Gaussian data
 
 import numpy as np
