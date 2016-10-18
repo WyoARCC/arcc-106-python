@@ -2,7 +2,7 @@
 """
 Created on Fri Oct 14 13:55:03 2016
 
-This Python program will is a Jacobi single point iterative solver for a 2-D array. 
+This Python program is a Jacobi single point iterative solver for a 2-D array. 
 We will set the boundary conditions to be constant and then iterate over the sample space
 to reach equilibrium. To show this graphically, we will plot a heat map. 
 This program is to illustrate the use of 'numpy' and 'matplotlib' libraries. 
@@ -64,9 +64,12 @@ ax = fig.add_subplot(111)
 # Starting the iterations with a 'for' loop
 print("Starting Jacobi interations on A...\n")
 for iter in range(MAX_ITER): 
+    # Plotting a heatmap 
     if iter%20 == 0:
-        im = plt.imshow(A_new, extent = (0, 1, 0, 1)) 
+        # Choosing the axes size to be between CONST_initial_guess and CONST_bound_val and plotting A_new
+        im = plt.imshow(A_new, extent = (CONST_initial_guess, CONST_bound_val, CONST_initial_guess, CONST_bound_val)) 
         plt.axis('off')
+        # Show the plot!
         plt.show()
         
     # Checking to see if we need to continue with our calculations
@@ -81,9 +84,9 @@ for iter in range(MAX_ITER):
         
 # Printing as error message if there is any
 if iter > MAX_ITER: 
-    print("The maximum number of iterations has been exceeded before solution was reached\n")
+    print("The maximum number of iterations has been exceeded before equilibrium was reached\n")
     
-    # Final printing of the solution 
+# Final printing of the solution 
 print("The final solution was reached with %d iterations: "%iter)
 print(A_new)
 
