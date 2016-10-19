@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 """
 Created on Fri Oct 14 13:55:03 2016
-
 This Python program is a Jacobi single point iterative solver for a 2-D array. 
 We will set the boundary conditions to be constant and then iterate over the sample space
 to reach equilibrium. To show this graphically, we will plot a heat map. 
 This program is to illustrate the use of 'numpy' and 'matplotlib' libraries. 
-
 Advanced Research Computing Centre, University of Wyoming.
 """
 
@@ -37,8 +35,6 @@ CONST_size = 4
 A_old = np.zeros((CONST_size, CONST_size), dtype = float)
 A_new = np.zeros((CONST_size, CONST_size), dtype = float)
 
-diff = np.zeros((CONST_size, CONST_size), dtype = float)
-
 # REMEMBER: Array indexing in Python starts with 0!
 
 # Since we need a boundary condition to iterate from, we will set all the boundary
@@ -55,48 +51,68 @@ A_old[:,0] = CONST_bound_val
 # 4. Setting the elements of the LAST COLUMN to the boundary value
 A_old[:,CONST_size-1] = CONST_bound_val
 
+# Ensuring that even A_new starts with the same values
+A_new = A_old.copy()
+B_new = A_new.copy()
+B_old = A_old.copy()
+
 # Setting the error to be high enough to start the iterations
 err = 1.0
 
-fig = plt.figure('Laplacian2D')
-ax = fig.add_subplot(111)
-
 # Starting the iterations with a 'for' loop
-print("Starting Jacobi interations on A...\n")
+print("Starting Jacobi interations on A using splicing...\n")
 for iter in range(MAX_ITER): 
-    # Plotting a heatmap 
-    if iter%20 == 0:
-        # Choosing the axes size to be between CONST_initial_guess and CONST_bound_val and plotting A_new
-        im = plt.imshow(A_new, extent = (CONST_initial_guess, CONST_bound_val, CONST_initial_guess, CONST_bound_val)) 
-        plt.axis('off')
-        # Show the plot!
-        plt.show()
-        
-    # Checking to see if we need to continue with our calculations
-    if err >= tol: 
-        # Creating a copy to compute the difference between arrays for error checking
-        A_new = A_old.copy()
-        # In-place computation of simple average of nearest neighbors using slicing
-        A_old[1:-1, 1:-1] = 0.25*(A_old[0:-2, 1:-1] + A_old[2:, 1:-1] + A_old[1:-1, 0:-2] + A_old[1:-1, 2:])
-        # Computing RMS error by finding the difference and then the square root
-        diff = (A_new - A_old).flat
-        err = np.sqrt(np.dot(diff, diff))
-        
-# Printing as error message if there is any
-if iter > MAX_ITER: 
-    print("The maximum number of iterations has been exceeded before equilibrium was reached\n")
-    
+# Checking to see if we need to continue with our calculations
+	if err >= tol: 
+		# In-place computation of simple average of nearest neighbors using slicing
+		A_new[1:-1, 1:-1] = 0.25*(A_old[0:-2, 1:-1] + A_old[2:, 1:-1] + A_old[1:-1, 0:-2] + A_old[1:-1, 2:])
+		# Computing RMS error by finding the difference and then the square root
+		diff = (A_new - A_old).flat
+		err = np.sqrt(np.dot(diff, diff))
+		# Creating a copy to compute the difference between arrays for error checking
+		A_old = A_new.copy()
+	else:
+		break
+
+# Printing as error message if the desired tolerance is still not reached
+if err >= tol: 
+	print("The maximum number of iterations has been exceeded before equilibrium was reached")
+
 # Final printing of the solution 
-print("The final solution was reached with %d iterations: "%iter)
+print("The final solution (using splicing) was reached with %d iterations: "%iter)
 print(A_new)
 
+err = 1.0
 
+print("Starting Jacobi interations on B using indexing...\n")
+for iter in range(MAX_ITER): 
+# Checking to see if we need to continue with our calculations
+	if err >= tol: 
+		# Using element by element indexing to get the average of nearest neighbors
+		for i in range(1, CONST_size-1):
+			for j in range(1, CONST_size-1):
+				B_new[i, j] = 0.25*(B_old[i-1, j] + B_old[i, j-1] + B_old[i+1, j] + B_old[i, j+1])
+		# Computing RMS error by finding the difference and then the square root
+		diff = (B_new - B_old).flat
+		err = np.sqrt(np.dot(diff, diff))
+		# Creating a copy to compute the difference between arrays for error checking
+		B_old = B_new.copy()
+	else:
+		break
 
+# Printing as error message if the desired tolerance is still not reached
+if err >= tol: 
+	print("The maximum number of iterations has been exceeded before equilibrium was reached")
 
+# Final printing of the solution 
+print("The final solution (using indexing) was reached with %d iterations: "%iter)
+print(B_new)
 
-
-
-
-
-
-
+# Plotting the heatmap
+# Choosing the axes size to be between CONST_initial_guess and CONST_bound_val and plotting A_new
+im = plt.imshow(A_new, extent = (CONST_initial_guess, CONST_bound_val, CONST_initial_guess, CONST_bound_val)) 
+plt.axis('off')
+# Show the plot!
+# plt.show()
+# To save the plot to a .png file that can be viewed later
+plt.savefig('heatmap.png')
