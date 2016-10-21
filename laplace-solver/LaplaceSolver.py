@@ -5,7 +5,7 @@ This Python program is a Jacobi single point iterative solver for a 2-D array.
 We will set the boundary conditions to be constant and then iterate over the sample space
 to reach equilibrium. To show this graphically, we will plot a heat map. 
 This program is to illustrate the use of 'numpy' and 'matplotlib' libraries. 
-Advanced Research Computing Centre, University of Wyoming.
+Advanced Research Computing Center, University of Wyoming.
 """
 
 # Need to import the numpy and matplotlib library for use
@@ -60,7 +60,7 @@ B_old = A_old.copy()
 err = 1.0
 
 # Starting the iterations with a 'for' loop
-print("Starting Jacobi interations on A using splicing...\n")
+print("Starting Jacobi interations on A using slicing...\n")
 for iter in range(MAX_ITER): 
 # Checking to see if we need to continue with our calculations
 	if err >= tol: 
@@ -79,7 +79,7 @@ if err >= tol:
 	print("The maximum number of iterations has been exceeded before equilibrium was reached")
 
 # Final printing of the solution 
-print("The final solution (using splicing) was reached with %d iterations: "%iter)
+print("The final solution (using slicing) was reached with %d iterations: "%iter)
 print(A_new)
 
 err = 1.0
