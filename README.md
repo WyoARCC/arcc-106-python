@@ -60,3 +60,6 @@ must be used such as multiprocessing and MPI bindings into Python.
 -    Python Primer: https://hplgit.github.io/primer.html/doc/pub/half/book.pdf
 -    Python for Computational Science and Engineering: http://www.southampton.ac.uk/~fangohr/training/python/pdfs/Python-for-Computational-Science-and-Engineering.pdf
 -    Offical Python 3 Documentation: https://docs.python.org/3/ 
+
+
+# We are starting to use Git! YAY
