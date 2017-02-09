@@ -9,19 +9,18 @@ max_temps = temps[:, :1]
 mean_temps = temps[:, 1:2]
 
 # Do the splice for min_temps here. It's the third column.
-min_temps = temps[:, 2:]
 
 
 # Mean temperatures of the month
 mean_temp = np.mean(mean_temps)
 print("The mean is: " + str(mean_temp))
 
-# Find the max temperature for the month.
-max_temp = np.amax(max_temps)
+# Find the max temperature for the month using the max_temps array
+max_temp = 
 print("The max is: " + str(max_temp))
 
-# Find the min temperature for the month.
-min_temp = np.amin(min_temps)
+# Find the min temperature for the month using the min_temps array
+min_temp = 
 print("The min is: " + str(min_temp))
 
 # Print out the standard deviation of the means
@@ -38,7 +37,8 @@ dates = np.arange('2016-01', '2016-02', dtype='datetime64[D]').astype(datetime)
 fig, (ax1, ax2, ax3) = plt.subplots(3, sharex=True, sharey=True)
 ax1.plot_date(dates, mean_temps, 'g.-')
 ax2.plot_date(dates, max_temps, 'b.-')
-ax3.plot_date(dates, min_temps, 'r.-')
+
+# Repeat for min_temps, make the line red
 
 
 # This sets the title of the figure.
