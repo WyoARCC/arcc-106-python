@@ -42,6 +42,7 @@ threads from executing concurrently. This makes Python difficult
 to use for parallelism based on threads. Therefore different methods
 must be used such as multiprocessing and MPI bindings into Python.
 
+
 ## Helpful Libraries
 -    NumPy
 -    SciPy
@@ -51,6 +52,9 @@ must be used such as multiprocessing and MPI bindings into Python.
 -    SymPy
 -    mlpy
 -    PyACTS
+
+## Installation
+For scientific computing, the easiest way to install Python is through Anaconda. This wiki page covers installing Anaconda. https://github.com/WyoARCC/arcc-106-python/wiki/Installing-Python-and-Spyder. Anaconda comes with or supports nearly all of the packages mentioned below and more.
 
 ## Additional Resources
 -    Anaconda Python: https://www.continuum.io/
